@@ -102,7 +102,7 @@ function displayWeather(data) {
 
   document.getElementById("cityName").textContent = data.name;
   const unitSymbol = metric ? "°C" : "°F";
-  document.getElementById("temperature").textContent = `Temperature: ${Math.round(data.main.temp)} ${unitSymbol}`;
+  document.getElementById("temperature").textContent = `Temp: ${Math.round(data.main.temp)} ${unitSymbol}`;
 
   const desc = data.weather[0].description;
   document.getElementById("description").textContent = desc.charAt(0).toUpperCase() + desc.slice(1);
