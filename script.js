@@ -9,7 +9,7 @@ const weatherSection = document.getElementById("weatherSection");
 const forecastSection = document.getElementById("forecastSection");
 const errorBox = document.getElementById("errorBox");
 const themeToggle = document.getElementById("themeToggle");
-const unitToggle = document.getElementById("unitToggle"); // Add a button in HTML for this
+const unitToggle = document.getElementById("unitToggle");
 
 let darkMode = false;
 let metric = true; // Celsius by default
@@ -48,9 +48,13 @@ function hideLoader() {
 function showErrorMessage(msg) {
   errorBox.textContent = msg;
   errorBox.style.display = "block";
+
+  // Hide unit toggle if error
+  unitToggle.style.display = "none";
+
   // Make it dismissible
-  errorBox.onclick = () => errorBox.style.display = "none";
-  setTimeout(() => errorBox.style.display = "none", 5000);
+  errorBox.onclick = () => (errorBox.style.display = "none");
+  setTimeout(() => (errorBox.style.display = "none"), 5000);
 }
 
 async function getWeatherByCity(city) {
@@ -100,15 +104,27 @@ function displayWeather(data) {
   weatherSection.style.display = "block";
   weatherSection.classList.add("fade-in");
 
+  // ✅ Show unit toggle only after weather loads
+  unitToggle.style.display = "block";
+
   document.getElementById("cityName").textContent = data.name;
   const unitSymbol = metric ? "°C" : "°F";
-  document.getElementById("temperature").textContent = `Temp: ${Math.round(data.main.temp)} ${unitSymbol}`;
+  document.getElementById("temperature").textContent = `Temp: ${Math.round(
+    data.main.temp
+  )} ${unitSymbol}`;
 
   const desc = data.weather[0].description;
-  document.getElementById("description").textContent = desc.charAt(0).toUpperCase() + desc.slice(1);
+  document.getElementById("description").textContent =
+    desc.charAt(0).toUpperCase() + desc.slice(1);
 
-  document.getElementById("humidity").textContent = `Humidity: ${data.main.humidity}%`;
-  document.getElementById("wind").textContent = `Wind: ${Math.round(data.wind.speed)} ${metric ? "m/s" : "mph"}`;
+  document.getElementById(
+    "humidity"
+  ).textContent = `Humidity: ${data.main.humidity}%`;
+  document.getElementById(
+    "wind"
+  ).textContent = `Wind: ${Math.round(data.wind.speed)} ${
+    metric ? "m/s" : "mph"
+  }`;
 
   // Weather icon
   const iconCode = data.weather[0].icon;
@@ -168,10 +184,14 @@ function displayForecast(data) {
   forecastSection.classList.add("fade-in");
   forecastContainer.innerHTML = "";
 
-  const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+  const dailyData = data.list.filter((item) =>
+    item.dt_txt.includes("12:00:00")
+  );
 
   dailyData.forEach((day, index) => {
-    const date = new Date(day.dt_txt).toLocaleDateString("en-US", { weekday: "short" });
+    const date = new Date(day.dt_txt).toLocaleDateString("en-US", {
+      weekday: "short",
+    });
     const temp = Math.round(day.main.temp);
     const icon = day.weather[0].icon;
     const desc = day.weather[0].main.toLowerCase();
