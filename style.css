@@ -197,20 +197,39 @@ h1 {
 }
 
 /* ===== Responsive ===== */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
   .app {
     max-width: 90%;
     padding: 15px;
     border-radius: 15px;
   }
+
   .search-box {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row; /* keep input + search on same line */
+    gap: 6px;
+    flex-wrap: wrap;
   }
-  .search-box button {
-    width: 100%;
+
+  #cityInput {
+    flex: 1;
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  #searchBtn {
+    flex: 0 0 auto; /* small fixed button */
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  #locationBtn {
+    width: 100%; /* move below full width */
+    margin-top: 6px;
+    justify-content: center;
   }
 }
+
 /* ===== Dark Mode Styles ===== */
 body.dark {
   background: linear-gradient(135deg, #1f1c2c, #928dab);
