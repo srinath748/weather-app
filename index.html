@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    
+      <!-- Theme Toggle -->
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+  <i class="fa-solid fa-moon"></i>
+</button>
+
+
+
+ 
+</button>
+    <!-- App Title -->
+    <h1><i class="fa-solid fa-cloud-sun"></i> Weather App</h1>
+    
+    <!-- Search Section -->
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="🔍 Enter city name">
+      <button id="searchBtn" aria-label="Search City"><span style='font-size:20px;'>&#128269;</span> Search</button>
+      <button id="locationBtn" aria-label="Use My Location"><i class="fa-solid fa-location-dot"></i> My Location</button>
+    </div>
+    <!-- Add inside .app, below search box -->
+
+
+
+    <!-- Error Box -->
+    <div id="errorBox" class="error-box" style="display:none;"></div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader"></div>
+
+    <!-- Current Weather -->
+    <div id="weatherSection" class="weather-info" style="display:none;">
+      <h2 id="cityName"></h2>
+      <img id="weatherIcon" src="" alt="Weather Icon" style="display:none; width:80px; margin:auto;">
+
+      <div class="weather-details">
+        <div class="weather-card"><p id="temperature"></p></div>
+        <div class="weather-card"><p id="description"></p></div>
+        <div class="weather-card"><p id="humidity"></p></div>
+        <div class="weather-card"><p id="wind"></p></div>
+      </div>
+    </div>
+    <!-- Unit Toggle -->
+<button id="unitToggle" class="unit-toggle">Switch to °F</button>
+
+    <!-- Forecast Section -->
+    <div id="forecastSection" class="forecast" style="display:none;">
+      <h3><i class="fa-solid fa-calendar-days"></i> 5-Day Forecast</h3>
+      <div id="forecastContainer" class="forecast-cards"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Powered by OpenWeatherMap</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
